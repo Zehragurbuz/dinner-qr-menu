@@ -89,7 +89,7 @@ export default function OrderForm() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-md mx-auto px-5 py-8">
         <h1 className="text-2xl font-bold text-gray-800 mb-1">
-          Akşam Yemeği Menüsü 🍔
+          Zehra'nın Menüsü 🍔
         </h1>
         <p className="text-gray-500 text-sm mb-8">
           Siparişini seç, mutfağa gönderelim.
