@@ -130,7 +130,7 @@ export default function OrderForm() {
           <MultiOptionSelector
             label="Sos"
             options={BURGER_SAUCES}
-            value={form.burgerSauce}
+            values={form.burgerSauce}
             onChange={(val) => updateField('burgerSauce', val)}
           />
 
