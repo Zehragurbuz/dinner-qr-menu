@@ -1,3 +1,7 @@
+export const DESSERT_OPTIONS = ['Spoonful', 'Dondurma', 'İstemiyorum']
+
+export const BREAD_OPTIONS = ['Tam Buğday', 'Gurme']
+
 export const BURGER_DONENESS = ['Az', 'Orta', 'İyi']
 
 export const BURGER_TOPPINGS = [
@@ -30,4 +34,5 @@ export const DRINK_OPTIONS = [
   'vişneli nazo',
   'Kızılcık şerbeti',
   'Minarelli su',
+  'Limonata',
 ]

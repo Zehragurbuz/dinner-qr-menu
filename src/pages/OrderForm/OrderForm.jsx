@@ -7,22 +7,26 @@ import {
   BURGER_DONENESS,
   BURGER_TOPPINGS,
   BURGER_SAUCES,
+  BREAD_OPTIONS,
   SIDE_POTATO_OPTIONS,
   COFFEE_TEMPERATURE,
   COFFEE_SYRUP,
   COFFEE_MILK,
   DRINK_OPTIONS,
+  DESSERT_OPTIONS,
 } from '../../constants/menuOptions'
 const initialFormState = {
   guestName: '',
   burgerDoneness: '',
   burgerToppings: [],
   burgerSauce: [],
+  breadChoice: '',
   sidePotato: '',
   sideRibCorn: false,
   drinkChoice: '',
+  dessertChoice: '',
   coffeeTemperature: '',
-  coffeeSyrup: '',
+  coffeeSyrup: [],
   coffeeMilk: '',
   specialNote: '',
 }
@@ -49,18 +53,20 @@ export default function OrderForm() {
     setError(null)
 
     const { error: insertError } = await supabase.from('orders').insert({
-      guest_name: form.guestName.trim(),
-      burger_doneness: form.burgerDoneness,
-      burger_toppings: form.burgerToppings,
-      burger_sauce: form.burgerSauce,
-      side_potato: form.sidePotato,
-      side_rib_corn: form.sideRibCorn,
-      drink_choice: form.drinkChoice || null,
-      coffee_temperature: form.coffeeTemperature || null,
-      coffee_syrup: form.coffeeSyrup || null,
-      coffee_milk: form.coffeeMilk || null,
-      special_note: form.specialNote.trim() || null,
-    })
+  guest_name: form.guestName.trim(),
+  burger_doneness: form.burgerDoneness,
+  burger_toppings: form.burgerToppings,
+  burger_sauce: form.burgerSauce,
+  bread_choice: form.breadChoice || null,
+  side_potato: form.sidePotato,
+  side_rib_corn: form.sideRibCorn,
+  drink_choice: form.drinkChoice || null,
+  dessert_choice: form.dessertChoice || null,
+  coffee_temperature: form.coffeeTemperature || null,
+  coffee_syrup: form.coffeeSyrup || null,
+  coffee_milk: form.coffeeMilk || null,
+  special_note: form.specialNote.trim() || null,
+})
 
     setSubmitting(false)
 
@@ -92,7 +98,7 @@ export default function OrderForm() {
           Zehra'nın Menüsü 🍔
         </h1>
         <p className="text-gray-500 text-sm mb-8">
-          Siparişini seç, mutfağa gönderelim.
+          Siparişini seç.
         </p>
 
         <form onSubmit={handleSubmit}>
@@ -126,6 +132,12 @@ export default function OrderForm() {
             values={form.burgerToppings}
             onChange={(val) => updateField('burgerToppings', val)}
           />
+          <OptionSelector
+  label="Ekmek Türü"
+  options={BREAD_OPTIONS}
+  value={form.breadChoice}
+  onChange={(val) => updateField('breadChoice', val)}
+/>
 
           <MultiOptionSelector
             label="Sos"
@@ -138,11 +150,11 @@ export default function OrderForm() {
           <h2 className="text-lg font-bold text-gray-800 mb-4">🍟 Yan Lezzetler</h2>
 
           <OptionSelector
-            label="Patates"
-            options={SIDE_POTATO_OPTIONS}
-            value={form.sidePotato}
-            onChange={(val) => updateField('sidePotato', val)}
-          />
+  label="Patates"
+  options={SIDE_POTATO_OPTIONS}
+  value={form.sidePotato}
+  onChange={(val) => updateField('sidePotato', val)}
+/>
 
           <div className="mb-6 flex items-center justify-between bg-white border border-gray-300 rounded-xl px-4 py-3">
             <span className="text-sm font-semibold text-gray-700">
@@ -172,6 +184,15 @@ export default function OrderForm() {
   value={form.drinkChoice}
   onChange={(val) => updateField('drinkChoice', val)}
 />
+<hr className="my-6 border-gray-200" />
+<h2 className="text-lg font-bold text-gray-800 mb-4">🍨 Tatlı</h2>
+
+<OptionSelector
+  label="Tatlı Seçimi"
+  options={DESSERT_OPTIONS}
+  value={form.dessertChoice}
+  onChange={(val) => updateField('dessertChoice', val)}
+/>
 
           <hr className="my-6 border-gray-200" />
           <h2 className="text-lg font-bold text-gray-800 mb-4">☕ Kahve Barı</h2>
@@ -183,10 +204,10 @@ export default function OrderForm() {
             onChange={(val) => updateField('coffeeTemperature', val)}
           />
 
-          <OptionSelector
+          <MultiOptionSelector
             label="Aroma / Şurup"
             options={COFFEE_SYRUP}
-            value={form.coffeeSyrup}
+            values={form.coffeeSyrup}
             onChange={(val) => updateField('coffeeSyrup', val)}
           />
 
@@ -206,7 +227,7 @@ export default function OrderForm() {
             <textarea
               value={form.specialNote}
               onChange={(e) => updateField('specialNote', e.target.value)}
-              placeholder="Alerji, ekstra istek vs."
+              placeholder="Alerji, hamileyseniz vs."
               rows={3}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-orange-500 resize-none"
             />

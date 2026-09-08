@@ -18,15 +18,16 @@ export default function OrderCard({ order, onServe }) {
 
       <div className="space-y-2 text-sm text-gray-700 flex-1">
         <div>
-          <span className="font-semibold">🍔 Hamburger:</span>{' '}
-          {order.burger_doneness}
-          {order.burger_toppings?.length > 0 && (
-            <span> — {order.burger_toppings.join(', ')}</span>
-          )}
-          {order.burger_sauce?.length > 0 && (
-            <span> — Sos: {order.burger_sauce.join(', ')}</span>
-          )}
-        </div>
+  <span className="font-semibold">🍔 Hamburger:</span>{' '}
+  {order.burger_doneness}
+  {order.burger_toppings?.length > 0 && (
+    <span> — {order.burger_toppings.join(', ')}</span>
+  )}
+  {order.burger_sauce?.length > 0 && (
+    <span> — Sos: {order.burger_sauce.join(', ')}</span>
+  )}
+  {order.bread_choice && <span> — Ekmek: {order.bread_choice}</span>}
+</div>
 
         <div>
           <span className="font-semibold">🍟 Yan:</span> {order.side_potato}
@@ -47,6 +48,11 @@ export default function OrderCard({ order, onServe }) {
               .join(', ')}
           </div>
         )}
+        {order.dessert_choice && order.dessert_choice !== 'İstemiyorum' && (
+  <div>
+    <span className="font-semibold">🍨 Tatlı:</span> {order.dessert_choice}
+  </div>
+)}
 
         {order.special_note && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg px-3 py-2 text-yellow-800 text-xs mt-2">
