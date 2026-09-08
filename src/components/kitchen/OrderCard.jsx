@@ -23,7 +23,9 @@ export default function OrderCard({ order, onServe }) {
           {order.burger_toppings?.length > 0 && (
             <span> — {order.burger_toppings.join(', ')}</span>
           )}
-          {order.burger_sauce && <span> — Sos: {order.burger_sauce}</span>}
+          {order.burger_sauce?.length > 0 && (
+            <span> — Sos: {order.burger_sauce.join(', ')}</span>
+          )}
         </div>
 
         <div>

@@ -17,7 +17,7 @@ const initialFormState = {
   guestName: '',
   burgerDoneness: '',
   burgerToppings: [],
-  burgerSauce: '',
+  burgerSauce: [],
   sidePotato: '',
   sideRibCorn: false,
   drinkChoice: '',
@@ -52,7 +52,7 @@ export default function OrderForm() {
       guest_name: form.guestName.trim(),
       burger_doneness: form.burgerDoneness,
       burger_toppings: form.burgerToppings,
-      burger_sauce: form.burgerSauce || null,
+      burger_sauce: form.burgerSauce,
       side_potato: form.sidePotato,
       side_rib_corn: form.sideRibCorn,
       drink_choice: form.drinkChoice || null,
@@ -127,7 +127,7 @@ export default function OrderForm() {
             onChange={(val) => updateField('burgerToppings', val)}
           />
 
-          <OptionSelector
+          <MultiOptionSelector
             label="Sos"
             options={BURGER_SAUCES}
             value={form.burgerSauce}
